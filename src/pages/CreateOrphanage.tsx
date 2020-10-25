@@ -60,38 +60,23 @@ export default function CreateOrphanage() {
 
     const data = new FormData();
 
-    const test = {
-      name,
-      about,
-      instructions,
-      opening_hours,
-      open_on_weekends,
-      latitude,
-      longitude,
-      images,
-    }
-
-    data.append('name', name);
-    data.append('about', about);
+    data.append('name', String(name));
+    data.append('about', String(about));
     data.append('latitude', String(latitude));
-    data.append('logitude', String(longitude));
-    data.append('instructions', instructions);
-    data.append('opening_hours', opening_hours);
+    data.append('longitude', String(longitude));
+    data.append('instructions', String(instructions));
+    data.append('opening_hours', String(opening_hours));
     data.append('open_on_weekends', String(open_on_weekends));
 
     images.forEach(image => {
-      data.append('images', image);
-    })
-
-    console.log(test);
-
-    console.log(data.append);
+      data.append('images', String(image));
+    });
 
     await api.post('orphanages', data);
 
-    alert('Cadastro realizado com sucesso!')
+    alert('Cadastro realizado com sucesso!');
 
-    history.push('/app');
+   history.push('/app');
 
   }
 
@@ -105,7 +90,7 @@ export default function CreateOrphanage() {
             <legend>Dados</legend>
 
             <Map
-              center={[-27.2092052, -49.6401092]}
+              center={[-23.646114, -46.447058]}
               style={{ width: '100%', height: 280 }}
               zoom={15}
               onclick={handleMapClick}
